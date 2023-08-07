@@ -1,0 +1,304 @@
+[
+{
+  "model": "courses.course",
+  "pk": "05f46db8-0503-4372-9147-c889b5e7085b",
+  "fields": {
+    "owner": 3,
+    "title": "Java",
+    "overview": "<h2>Java for Engineers</h2>",
+    "created": "2023-07-10T10:29:54.741Z",
+    "updated_at": "2023-07-10T10:29:54.741Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "23972bfd-c0b9-43e9-a194-89a44340342a",
+  "fields": {
+    "owner": 3,
+    "title": "Django",
+    "overview": "Getting Started with Django",
+    "created": "2023-07-09T18:58:56.378Z",
+    "updated_at": "2023-07-09T18:58:56.378Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "25a64f96-d3ab-49d4-b6ef-d6a1766993bf",
+  "fields": {
+    "owner": 3,
+    "title": "test",
+    "overview": "<p>test overview</p>",
+    "created": "2023-07-10T09:57:44.773Z",
+    "updated_at": "2023-07-10T09:57:44.773Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "6598ca41-0eeb-499c-ba56-798aae322e71",
+  "fields": {
+    "owner": 1,
+    "title": "Physics",
+    "overview": "Introduction to Physics and Everything else.",
+    "created": "2023-07-08T16:18:33.245Z",
+    "updated_at": "2023-07-08T16:18:33.245Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+  "fields": {
+    "owner": 3,
+    "title": "React",
+    "overview": "Let's learn Reactese",
+    "created": "2023-07-09T18:56:38.686Z",
+    "updated_at": "2023-07-09T18:56:50.568Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "b3de6cd5-191b-49c5-9373-d2d408b94e75",
+  "fields": {
+    "owner": 3,
+    "title": "Python",
+    "overview": "python",
+    "created": "2023-07-10T08:48:33.248Z",
+    "updated_at": "2023-07-10T08:48:33.248Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "c17dd2a7-9149-4095-bb87-15c11d1f206d",
+  "fields": {
+    "owner": 1,
+    "title": "Computer",
+    "overview": "Computer for life",
+    "created": "2023-07-09T17:46:21.479Z",
+    "updated_at": "2023-07-09T17:46:21.480Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "d0fd2bcd-61bd-44b5-ba39-ea756910acfb",
+  "fields": {
+    "owner": 3,
+    "title": "test 2",
+    "overview": "<p>test overview 2</p>",
+    "created": "2023-07-10T09:58:23.264Z",
+    "updated_at": "2023-07-10T09:58:23.264Z"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": "ec90d137-ce32-4cce-95b2-cd64a91753dc",
+  "fields": {
+    "owner": 3,
+    "title": "Machine Leaning",
+    "overview": "<p>Introduction to Keras</p>",
+    "created": "2023-07-10T22:13:34.685Z",
+    "updated_at": "2023-07-10T22:13:34.685Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 5,
+  "fields": {
+    "user": 2,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "grade_score": 0,
+    "created": "2023-07-10T08:51:07.262Z",
+    "updated_at": "2023-07-10T08:51:07.262Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 6,
+  "fields": {
+    "user": 2,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "grade_score": 69,
+    "created": "2023-07-10T08:51:45.893Z",
+    "updated_at": "2023-07-10T08:51:45.893Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 7,
+  "fields": {
+    "user": 3,
+    "course": "23972bfd-c0b9-43e9-a194-89a44340342a",
+    "grade_score": 89,
+    "created": "2023-07-10T10:49:00.159Z",
+    "updated_at": "2023-07-10T10:49:00.159Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 11,
+  "fields": {
+    "user": 3,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "grade_score": 50,
+    "created": "2023-07-10T16:23:30.585Z",
+    "updated_at": "2023-07-10T16:23:30.585Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 12,
+  "fields": {
+    "user": 1,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "grade_score": 60,
+    "created": "2023-07-10T16:24:22.926Z",
+    "updated_at": "2023-07-10T16:24:22.926Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 13,
+  "fields": {
+    "user": 3,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "grade_score": 50,
+    "created": "2023-07-10T19:02:54.518Z",
+    "updated_at": "2023-07-10T19:02:54.518Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 14,
+  "fields": {
+    "user": 2,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "grade_score": 39,
+    "created": "2023-07-10T19:27:11.818Z",
+    "updated_at": "2023-07-10T19:27:11.818Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 15,
+  "fields": {
+    "user": 1,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "grade_score": 84,
+    "created": "2023-07-10T19:29:43.597Z",
+    "updated_at": "2023-07-10T19:29:43.597Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 16,
+  "fields": {
+    "user": 3,
+    "course": "05f46db8-0503-4372-9147-c889b5e7085b",
+    "grade_score": 50,
+    "created": "2023-07-10T20:54:09.433Z",
+    "updated_at": "2023-07-10T20:54:09.433Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 17,
+  "fields": {
+    "user": 3,
+    "course": "05f46db8-0503-4372-9147-c889b5e7085b",
+    "grade_score": 0,
+    "created": "2023-07-10T21:37:51.972Z",
+    "updated_at": "2023-07-10T21:37:51.972Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 18,
+  "fields": {
+    "user": 3,
+    "course": "05f46db8-0503-4372-9147-c889b5e7085b",
+    "grade_score": 0,
+    "created": "2023-07-10T21:37:57.122Z",
+    "updated_at": "2023-07-10T21:37:57.122Z"
+  }
+},
+{
+  "model": "courses.grade",
+  "pk": 19,
+  "fields": {
+    "user": 3,
+    "course": "05f46db8-0503-4372-9147-c889b5e7085b",
+    "grade_score": 0,
+    "created": "2023-07-11T05:53:22.209Z",
+    "updated_at": "2023-07-11T05:53:22.210Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 13,
+  "fields": {
+    "user": 3,
+    "course": "23972bfd-c0b9-43e9-a194-89a44340342a",
+    "timestamp": "2023-07-09T20:28:31.425Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 14,
+  "fields": {
+    "user": 3,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "timestamp": "2023-07-09T20:32:42.923Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 15,
+  "fields": {
+    "user": 3,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "timestamp": "2023-07-09T21:11:26.133Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 16,
+  "fields": {
+    "user": 3,
+    "course": "c17dd2a7-9149-4095-bb87-15c11d1f206d",
+    "timestamp": "2023-07-09T22:04:16.565Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 17,
+  "fields": {
+    "user": 3,
+    "course": "05f46db8-0503-4372-9147-c889b5e7085b",
+    "timestamp": "2023-07-10T10:44:25.868Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 18,
+  "fields": {
+    "user": 2,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "timestamp": "2023-07-10T15:45:17.078Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 19,
+  "fields": {
+    "user": 1,
+    "course": "680f9ac3-164c-4304-b521-cf67c7a3204a",
+    "timestamp": "2023-07-10T15:58:00.238Z"
+  }
+},
+{
+  "model": "courses.enrolled",
+  "pk": 20,
+  "fields": {
+    "user": 1,
+    "course": "6598ca41-0eeb-499c-ba56-798aae322e71",
+    "timestamp": "2023-07-10T16:17:00.902Z"
+  }
+}
