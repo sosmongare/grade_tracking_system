@@ -13,7 +13,7 @@ import DialogContent from "@mui/material/DialogContent"
 import DialogContentText from "@mui/material/DialogContentText"
 import DialogActions from "@mui/material/DialogActions"
 import TextField from "@mui/material/TextField"
-import axios from "axios";
+import axios from "axios"
 import { useSnackbar } from "notistack"
 import {
   Box,
@@ -47,7 +47,7 @@ const RootPaper = styled(Paper)`
 
 const Title = styled(Typography)`
   margin: 10px;
-  color: fffff;
+  color: #ffffff; /* Fixed color value */
   font-size: 1.2em;
 `
 
@@ -66,15 +66,17 @@ export default function MyCourses() {
     loadCourse(id)
   )
 
-  const { data: user } = useQuery(["currentUser", { id }], () =>
-  loadUser(id)
-)
+  const [userGrades, setUserGrades] = useState({}) // Initialize as an empty object
+  const [userGradeScores, setUserGradeScores] = useState({}) // Initialize as an empty object
+
+  const { data: user } = useQuery(["currentUser", { id }], () => loadUser(id))
   const { enqueueSnackbar } = useSnackbar()
   const [grade_score, setGrade] = useState("")
   const { data = { results: [] } } = useQuery("results", loadCourses)
   const dispatch = useDispatch()
   const token = localStorage.getItem("token")
   const savedClaims = JSON.parse(localStorage.getItem("claims"))
+  //  const [userGrades, setUserGrades] = useState({}) // Initialize as an empty object
 
   useEffect(() => {
     if (token && !savedClaims) {
@@ -97,12 +99,8 @@ export default function MyCourses() {
   const { data: usersData = { results: [] } } = useQuery("users", loadUsers)
   const users = usersData.results
 
-
-
   const { data: gradesData = { results: [] } } = useQuery("grades", loadGrades)
   const grades = gradesData.results
-
-
 
   function getEnrollmentsByCourse(courseId) {
     return enrolleds.filter(enrollment => enrollment.course === courseId)
@@ -115,48 +113,63 @@ export default function MyCourses() {
     const courseId = event.target.value
     setSelectedCourse(courseId)
     setIsDialogOpen(true)
+
+    // Initialize the userGrades state for the selected course's enrollments
+    const usersForCourse = enrolleds
+      .filter(enrollment => enrollment.course === courseId)
+      .map(enrollment => enrollment.user)
+    const initialGrades = {}
+    usersForCourse.forEach(userId => {
+      initialGrades[userId] = ""
+    })
+    setUserGrades(initialGrades)
   }
 
   const handleCloseDialog = () => {
     setIsDialogOpen(false)
   }
 
-  const handleGradeChange = (event) => {
-    const grade_score = event.target.value;
-    setGrade(grade_score); // Update the grade_score state
-  };
-  const addGrade = (evt) => {
-    evt.preventDefault();
-  
-    const formData = new FormData();
-    formData.append("course", '05f46db8-0503-4372-9147-c889b5e7085b');
-    formData.append("user", '3');
-    formData.append("grade_score", grade_score);
-  
-    const token = localStorage.getItem("token");
-    console.log("Course:", course?.uuid);
-    console.log("User:", user?.id);
-  
-    axios
-      .post("http://127.0.0.1:8000/api/grades/", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      })
-      .then((response) => {
-        // Handle the response or update any necessary state
-        enqueueSnackbar(`You awarded ${grade_score}`, {
-          variant: "success",
-        });
-        console.log(formData);
-        
-      })
-      .catch((error) => {
-        // Handle any errors
-        console.error(error);
-      });
-  };
+  const handleGradeChange = (event, userId) => {
+    const newGrade = event.target.value
+    setUserGradeScores(prevGradeScores => ({
+      ...prevGradeScores,
+      [userId]: newGrade
+    }))
+  }
+
+  const addGrade = (evt, courseId) => {
+    evt.preventDefault()
+
+    const token = localStorage.getItem("token")
+
+    Object.keys(userGradeScores).forEach(userId => {
+      const formData = new FormData()
+      formData.append("course", courseId)
+      formData.append("user", userId)
+      formData.append("grade_score", userGradeScores[userId])
+
+      axios
+        .post("http://127.0.0.1:8000/api/grades/", formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data"
+          }
+        })
+        .then(response => {
+          // Handle the response or update any necessary state
+          enqueueSnackbar(`You awarded ${userGradeScores[userId]}`, {
+            variant: "success"
+          })
+        })
+        .catch(error => {
+          // Handle any errors
+          console.error(error)
+        })
+    })
+
+    // Close the dialog after processing
+    handleCloseDialog()
+  }
 
   return (
     <div>
@@ -175,7 +188,6 @@ export default function MyCourses() {
         <List dense>
           {results?.map((course, i) => {
             const courseEnrollments = getEnrollmentsByCourse(course.uuid)
-            //console.log("courseEnrollments:", courseEnrollments)
             return (
               <React.Fragment key={i}>
                 <ListItem>
@@ -215,26 +227,33 @@ export default function MyCourses() {
                   {enrolleds
                     .filter(enrollment => enrollment.course === selectedCourse)
                     .map((enrollment, index) => {
-       
+                      const user = users.find(
+                        user => user.id === enrollment.user
+                      )
+                      const userId = user?.id
+                      const userEmail = user?.email || "-"
+
                       const courseGrade = grades.find(
                         grade =>
                           grade.course === selectedCourse &&
-                          grade.user === enrollment.user
+                          grade.user === userId
                       )
+
                       return (
                         <TableRow key={index}>
-                          <TableCell>{users.find(user => user.id === enrollment.user)?.email || "-"}</TableCell>
+                          <TableCell>{userEmail}</TableCell>
                           <TableCell>
                             {courseGrade ? (
-                              <>
-                              {courseGrade.grade_score}
-                              </>
+                              <>{courseGrade.grade_score}</>
                             ) : (
                               <TextField
-                                id="Grade"
+                                // Use a unique ID for each input field
+                                id={`Grade-${userId}`}
                                 label="Grade"
-                                value={grade_score}
-                                onChange={handleGradeChange}
+                                value={userGradeScores[userId] || ""}
+                                onChange={event =>
+                                  handleGradeChange(event, userId)
+                                }
                                 type="number"
                                 margin="normal"
                                 helperText=""
@@ -255,7 +274,7 @@ export default function MyCourses() {
             variant="contained"
             className=""
             color="secondary"
-            onClick={addGrade}
+            onClick={evt => addGrade(evt, selectedCourse, user?.id)}
           >
             Save
           </Button>
